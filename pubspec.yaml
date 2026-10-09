@@ -52,9 +52,13 @@ flutter:
   plugin:
     #implements: video_player #  endorsed. flutter 3.27+ can only select 1 implementation
     platforms:
-      android:
-        package: com.mediadevkit.fvp
-        pluginClass: FvpPlugin
+      # android platform declaration removed (DsPlayer fork, PC-NATIVE-PLUGIN-SPLIT-DESIGN 4.2):
+      # upstream android build compiles libmdk.so (~10MB per abi) into the APK.
+      # Removing the declaration makes Flutter tooling ignore this plugin on
+      # Android entirely (no registrant entry, no native build). Windows/Linux
+      # artifacts unchanged. NOTE: keep this file ASCII-only in comments --
+      # pub decodes `git show` output with the system codepage (GBK) and
+      # non-ASCII bytes corrupt the YAML line stream on such hosts.
       ios:
         pluginClass: FvpPlugin
         sharedDarwinSource: true
